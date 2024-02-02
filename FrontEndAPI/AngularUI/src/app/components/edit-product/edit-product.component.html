@@ -1,0 +1,28 @@
+<div class="container my-5">
+  <h1>Edit Product</h1>
+  <form [formGroup]="editProductForm">
+    <div class="mb-3">
+      <div class="input-field">
+        <span class="fa fa-user p-2"></span>
+        <input id="name"  class="form-control" formControlName="name" type="text" placeholder="Product Name">
+      </div>
+    </div>
+    <small *ngIf="editProductForm.controls['name'].dirty && editProductForm.hasError('required', 'name')" class="text-danger">*Product Name is required.</small>
+    <div class="mb-3">
+      <div class="input-field">
+        <span class="fa fa-user p-2"></span>
+        <input id="price" class="form-control" formControlName="price" type="number" placeholder="Price">
+      </div>
+    </div>
+    <small *ngIf="editProductForm.controls['price'].dirty && editProductForm.hasError('required', 'price')" class="text-danger">*Price is required.</small>
+    <div class="mb-3">
+      <div class="input-field">
+        <span class="fa fa-user p-2"></span>
+        <input id="description" class="form-control" formControlName="description" type="text" placeholder="Description">
+      </div>
+    </div>
+
+    <button (click)="onEditProduct()" type="submit" class="btn btn-primary">Save</button>
+    <button (click)="onDeleteProduct('userId')" type="submit" class="btn btn-danger">Delete</button>
+  </form>
+</div>>

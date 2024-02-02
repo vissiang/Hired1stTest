@@ -1,0 +1,28 @@
+<div class="container my-5">
+  <h1>Add Product</h1>
+  <form [formGroup]="addProductForm">
+    <div class="mb-3">
+      <div class="input-field">
+        <span class="fa fa-user p-2"></span>
+        <input id="name"  class="form-control" formControlName="name" type="text" placeholder="Product Name">
+      </div>
+    </div>
+    <small *ngIf="addProductForm.controls['name'].dirty && addProductForm.hasError('required', 'name')" class="text-danger">*Product Name is required.</small>
+    <div class="mb-3">
+      <div class="input-field">
+        <span class="fa fa-user p-2"></span>
+        <input id="price" class="form-control" formControlName="price" type="number" placeholder="Price">
+      </div>
+    </div>
+    <small *ngIf="addProductForm.controls['price'].dirty && addProductForm.hasError('required', 'price')" class="text-danger">*Price is required.</small>
+    <div class="mb-3">
+      <div class="input-field">
+        <span class="fa fa-user p-2"></span>
+        <input id="description" class="form-control" formControlName="description" type="text" placeholder="Description">
+      </div>
+    </div>
+
+    <button (click)="onAddProduct()" type="submit" class="btn btn-primary">Add</button>
+    <button [routerLink]="['/products', userId]" type="submit" class="btn btn-primary">Back to List</button>
+  </form>
+</div>>

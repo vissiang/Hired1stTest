@@ -1,0 +1,49 @@
+
+<div class="container my-5">
+  <h1 class ="mb-3">Products</h1>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/products','Add', userId]">Add Product</a>
+          </li>
+        </ul>
+      </div>-->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard', userId]">Back to Dashboard</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <table class="table" *ngIf="products">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{product.productId}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.description}}</td>
+        <td><a [routerLink]="['/products','Edit', product.productId]">View</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="!products">No Products found</p>
+  </div>

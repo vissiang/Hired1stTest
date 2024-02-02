@@ -1,0 +1,38 @@
+<div class="container my-5">
+<h1 class="mb-3">Add New User</h1>
+
+<form [formGroup]="addUserForm">
+  <div class="mb-3">
+    <div class="input-field">
+      <span class="fa fa-user p-2"></span>
+      <input class="form-control" formControlName="firstName" type="text" placeholder="First Name">
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="input-field">
+      <span class="fa fa-user p-2"></span>
+      <input class="form-control" formControlName="lastName" type="text" placeholder="Last Name">
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="input-field" [class.error]="addUserForm.controls['emailAddress'].dirty && addUserForm.hasError('required', 'emailAddress')">
+      <span class="fa fa-user p-2"></span>
+      <input [(ngModel)]="emailAddress" (ngModelChange)="checkValidEmail($event)"  class="form-control" formControlName="emailAddress" type="text" oninput="this.value = this.value.toLowerCase()" placeholder="Email">
+    </div>
+  </div>
+  <small *ngIf="addUserForm.controls['emailAddress'].dirty && addUserForm.hasError('required', 'emailAddress')" class="text-danger">*Email Address is required.</small>
+  <small *ngIf="!isValidEmail && emailAddress" class="text-danger">*Email is invalid*</small>
+  <div class="mb-3">
+    <div class="input-field" [class.error]="addUserForm.controls['password'].dirty && addUserForm.hasError('required', 'password')">
+      <span class="fa fa-lock p-2"></span>
+      <input class="form-control" formControlName="password" [type]="type" placeholder="Password">
+      <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+    </div>
+  </div>
+  <small *ngIf="addUserForm.controls['password'].dirty && addUserForm.hasError('required', 'password')" class="text-danger">*Password is required.</small>
+
+  <button (click)="onAddUser()" type="submit" class="btn btn-primary">Submit</button>
+  <button [routerLink]="['/users', userId]" type="submit" class="btn btn-primary">Back to List</button>
+</form>
+
+</div>

@@ -1,0 +1,36 @@
+<div class="container my-5">
+  <h1>Edit User</h1>
+  <form [formGroup]="editUserForm">
+    <div class="mb-3">
+      <div class="input-field">
+        <span class="fa fa-user p-2"></span>
+        <input id="firstName"  class="form-control" formControlName="firstName" type="text" placeholder="First Name">
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="input-field">
+        <span class="fa fa-user p-2"></span>
+        <input id="lastName" class="form-control" formControlName="lastName" type="text" placeholder="Last Name">
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="input-field" [class.error]="editUserForm.controls['emailAddress'].dirty && editUserForm.hasError('required', 'emailAddress')">
+        <span class="fa fa-user p-2"></span>
+        <input id="emailAddress" [(ngModel)]="emailAddress" (ngModelChange)="checkValidEmail($event)"  class="form-control" formControlName="emailAddress" type="text" oninput="this.value = this.value.toLowerCase()" placeholder="Email">
+      </div>
+    </div>
+    <small *ngIf="editUserForm.controls['emailAddress'].dirty && editUserForm.hasError('required', 'emailAddress')" class="text-danger">*Email Address is required.</small>
+    <small *ngIf="!isValidEmail && emailAddress" class="text-danger">*Email is invalid*</small>
+    <div class="mb-3">
+      <div class="input-field" [class.error]="editUserForm.controls['password'].dirty && editUserForm.hasError('required', 'password')">
+        <span class="fa fa-lock p-2"></span>
+        <input id="password" class="form-control" formControlName="password" [type]="type" placeholder="Password">
+        <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+      </div>
+    </div>
+    <small *ngIf="editUserForm.controls['password'].dirty && editUserForm.hasError('required', 'password')" class="text-danger">*Password is required.</small>
+
+    <button (click)="onEditUser()" type="submit" class="btn btn-primary">Save</button>
+    <button (click)="onDeleteUser('userId')" type="submit" class="btn btn-danger">Delete</button>
+  </form>
+</div>>
